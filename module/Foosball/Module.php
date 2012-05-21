@@ -2,18 +2,14 @@
 
 namespace Foosball;
 
-use Zend\Module\Manager,
-    Zend\EventManager\StaticEventManager,
-    Zend\Module\Consumer\AutoloaderProvider;
-
-class Module implements AutoloaderProvider
+class Module
 {
-    public function init(Manager $moduleManager)
+    /*public function init(Manager $moduleManager)
     {
         $events       = $moduleManager->events();
         $sharedEvents = $events->getSharedManager();
         $sharedEvents->attach('bootstrap', 'bootstrap', array($this, 'initializeView'), 100);
-    }
+    }*/
 
     public function getAutoloaderConfig()
     {
