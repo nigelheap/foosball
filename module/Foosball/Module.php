@@ -4,25 +4,25 @@ namespace Foosball;
 
 class Module
 {
-    /*public function init(Manager $moduleManager)
+    public function onBootstrap($e)
     {
-        $events       = $moduleManager->events();
-        $sharedEvents = $events->getSharedManager();
-        $sharedEvents->attach('bootstrap', 'bootstrap', array($this, 'initializeView'), 100);
-    }*/
+        $application        = $e->getParam('application');
+        $sharedEventManager = $application->events()->getSharedManager();
+        $sharedEventManager->attach('bootstrap', 'bootstrap', array($this, 'initializeView'), 100);
+    }
 
     public function getAutoloaderConfig()
     {
         return array(
             'Zend\Loader\ClassMapAutoloader' => array(
                 __DIR__ . '/autoload_classmap.php',
-            ),
+                ),
             'Zend\Loader\StandardAutoloader' => array(
                 'namespaces' => array(
                     __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
+                    ),
                 ),
-            ),
-        );
+            );
     }
 
     public function getConfig()
