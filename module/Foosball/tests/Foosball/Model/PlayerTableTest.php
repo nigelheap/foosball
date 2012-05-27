@@ -2,8 +2,9 @@
 
 namespace FoosballTest\Model;
 
-use Foosball\Model,
-    Zend\Autoload;
+use Foosball\Model;
+use Zend\ServiceManager\ServiceManager;
+use Zend\Mvc\Service\ServiceManagerConfiguration;
 
 class PlayerTableTest extends \PHPUnit_Framework_TestCase {
     protected $p;
