@@ -2,13 +2,15 @@
 
 namespace Foosball;
 
+use Foosball\Model\PlayerTable;
+
 class Module
 {
     public function onBootstrap($e)
     {
         $application        = $e->getParam('application');
         $sharedEventManager = $application->events()->getSharedManager();
-        $sharedEventManager->attach('bootstrap', 'bootstrap', array($this, 'initializeView'), 100);
+        $sharedEventManager->attach('application', 'bootstrap', array($this, 'initializeView'), 100);
     }
 
     public function getAutoloaderConfig()
@@ -37,5 +39,18 @@ class Module
         $locator      = $app->getLocator();
         $renderer     = $locator->get('Zend\View\Renderer\PhpRenderer');
         $renderer->plugin('basePath')->setBasePath($basePath);
+    }
+
+    public function getServiceConfiguration()
+    {
+        return array(
+            'factories' => array(
+                'player-table' =>  function($sm) {
+                    $dbAdapter = $sm->get('db-adapter');
+                    $table = new PlayerTable($dbAdapter);
+                    return $table;
+                },
+            ),
+        );
     }
 }
