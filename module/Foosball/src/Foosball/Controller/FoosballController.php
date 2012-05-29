@@ -2,10 +2,10 @@
 
 namespace Foosball\Controller;
 
-use Zend\Mvc\Controller\AcitonController,
-    Zend\View\Model\ViewModel,
-    Foosball\Model\GameTable,
-    Foosball\Model\PlayerTable;
+use Zend\Mvc\Controller\AcitonController;
+use Zend\View\Model\ViewModel;
+use Foosball\Model\GameTable;
+use Foosball\Model\PlayerTable;
 
 class FoosballController extends ActionController
 {
