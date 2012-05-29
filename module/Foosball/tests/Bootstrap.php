@@ -1,4 +1,6 @@
 <?php
+use Zend\ServiceManager\ServiceManager;
+use Zend\Mvc\Service\ServiceManagerConfiguration;
 
 /*
  * Set error reporting to the level to which Zend Framework code must comply.
@@ -38,6 +40,14 @@ set_include_path(implode(PATH_SEPARATOR, $path));
  */
 include __DIR__ . '/_autoload.php';
 include $zfCore . '/tests/_autoload.php';
+
+$configuration = include $docRoot . '/config/application.config.php';
+
+// setup service manager
+$serviceManager = new ServiceManager(new ServiceManagerConfiguration($configuration['service_manager']));
+$serviceManager->setService('ApplicationConfiguration', $configuration);
+$serviceManager->get('ModuleManager')->loadModules();
+
 
 /*
  * Unset global variables that are no longer needed.
