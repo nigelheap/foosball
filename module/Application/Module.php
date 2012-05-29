@@ -2,6 +2,9 @@
 
 namespace Application;
 
+use Zend\Db\Adapter\Adapter as DbAdapter;
+
+
 class Module
 {
     public function getAutoloaderConfig()
@@ -21,5 +24,18 @@ class Module
     public function getConfig()
     {
         return include __DIR__ . '/config/module.config.php';
+    }
+
+    public function getServiceConfiguration()
+    {
+        return array(
+            'factories' => array(
+                'db-adapter' =>  function($sm) {
+                    $config = $sm->get('config')->db->toArray();
+                    $dbAdapter = new DbAdapter($config);
+                    return $dbAdapter;
+                },
+            ),
+        );
     }
 }
