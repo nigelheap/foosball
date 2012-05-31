@@ -52,5 +52,5 @@ $serviceManager->get('ModuleManager')->loadModules();
 /*
  * Unset global variables that are no longer needed.
  */
-unset($zfRoot, $zfCore, $foosballTests, $path);
+unset($zfRoot, $zfCore, $foosballTests, $path, $serviceManager);
 
