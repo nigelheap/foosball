@@ -30,26 +30,18 @@ class PlayerTableTest extends \PHPUnit_Framework_TestCase {
         $this->p = new Model\PlayerTable($this->mockAdapter);
     }
 
-    public function testFailedLoad()
+    /**
+     * @expectedException Exception
+     */
+    public function testFailLoad()
     {
-        $this->assertFalse($this->p->loaded());
+        $player = $this->p->getPlayer(false);
     }
 
+    public function testLoad()
+    {
+        $player = $this->p->getPlayer(1);
 
-    public function testExceptionLoad() {
-        try {
-            $this->p->load('nonsensical');
-        } catch (ModelLoadException $e) {
-            return;
-        }
-        
-        $this->fail('Did not get ModelLoadException');
-    }
-
-    public function testLoadFromID() {
-        $this->p->load(1);
-
-        $this->assertTrue($this->p->loaded());
-        $this->assertEquals(1, $this->p->id);
+        $this->assertInstanceOf('Foosball\Model\Player', $player);
     }
 }

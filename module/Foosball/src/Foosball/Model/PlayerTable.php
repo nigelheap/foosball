@@ -7,6 +7,8 @@ use Zend\Db\ResultSet\ResultSet;
 
 class PlayerTable extends TableGateway
 {
+    protected $table = 'player';
+
     public function __construct(Adapter $adapter = null)
     {
         $this->adapter = $adapter;
@@ -15,11 +17,14 @@ class PlayerTable extends TableGateway
         $this->initialize();
     }
 
-    public function load()
+    public function getPlayer($id)
     {
-    }
-
-    public function loaded()
-    {
+        $id  = (int) $id;
+        $rowset = $this->select(array('id' => $id));
+        $row = $rowset->current();
+        if (!$row) {
+            throw new \Exception("Could not find row $id");
+        }
+        return $row;
     }
 }
