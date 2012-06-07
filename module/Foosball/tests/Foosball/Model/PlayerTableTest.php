@@ -31,7 +31,7 @@ class PlayerTableTest extends \PHPUnit_Framework_TestCase {
     }
 
     /**
-     * @expectedException Exception
+     * @expectedException Foosball\Model\FailedLoadException
      */
     public function testFailLoad()
     {
