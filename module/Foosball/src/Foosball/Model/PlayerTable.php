@@ -4,6 +4,7 @@ namespace Foosball\Model;
 use Zend\Db\TableGateway\TableGateway;
 use Zend\Db\Adapter\Adapter;
 use Zend\Db\ResultSet\ResultSet;
+use Foosball\Model\Exception\FailedLoad;
 
 class PlayerTable extends TableGateway
 {
@@ -23,7 +24,7 @@ class PlayerTable extends TableGateway
         $rowset = $this->select(array('id' => $id));
         $row = $rowset->current();
         if (!$row) {
-            throw new \Exception("Could not find row $id");
+            throw new FailedLoad("Could not find row $id");
         }
         return $row;
     }
