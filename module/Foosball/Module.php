@@ -2,15 +2,16 @@
 
 namespace Foosball;
 
+use Zend\Mvc\ModuleRouteListener;
 use Foosball\Model\PlayerTable;
 
 class Module
 {
     public function onBootstrap($e)
     {
-        $application        = $e->getParam('application');
-        $sharedEventManager = $application->events()->getSharedManager();
-        $sharedEventManager->attach('application', 'bootstrap', array($this, 'initializeView'), 100);
+        $eventManager        = $e->getApplication()->getEventManager();
+        $moduleRouteListener = new ModuleRouteListener();
+        $moduleRouteListener->attach($eventManager);
     }
 
     public function getAutoloaderConfig()
