@@ -21,4 +21,9 @@ class PlayerTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertFalse($this->p->loaded());
     }
+
+    public function testLoad()
+    {
+        
+    }
 }

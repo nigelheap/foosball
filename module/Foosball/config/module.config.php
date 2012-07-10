@@ -1,6 +1,11 @@
 <?php
 return array(
-    // Routes for this module
+    'controllers' => array(
+        'invokables' => array(
+            'Foosball\Controller\Index' => 'Foosball\Controller\FoosballController',
+        ),
+    ),
+    
     'router' => array(
         'routes' => array(
             'foosball' => array(
@@ -12,7 +17,7 @@ return array(
                         'id'     => '[0-9]+',
                     ),
                     'defaults' => array(
-                        'controller' => 'foosball/foosball',
+                        'controller' => 'Foosball\Controller\Index',
                         'action'     => 'index',
                     ),
                 ),
@@ -20,10 +25,9 @@ return array(
         ),
     ),    
 
-    // View setup for this module
     'view_manager' => array(
         'template_path_stack' => array(
             'foosball' => __DIR__ . '/../view',
         ),
     ),
-);
+);

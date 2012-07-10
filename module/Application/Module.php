@@ -2,13 +2,14 @@
 
 namespace Application;
 
-use Zend\Db\Adapter\Adapter as DbAdapter;
 use Zend\Mvc\ModuleRouteListener;
+use Zend\Db\Adapter\Adapter as DbAdapter;
 
 class Module
 {
     public function onBootstrap($e)
     {
+        $e->getApplication()->getServiceManager()->get('translator');
         $eventManager        = $e->getApplication()->getEventManager();
         $moduleRouteListener = new ModuleRouteListener();
         $moduleRouteListener->attach($eventManager);
@@ -42,5 +43,5 @@ class Module
                 },
             ),
         );
-    }
+    }    
 }
