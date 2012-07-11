@@ -7,7 +7,7 @@ use Zend\Db\Adapter\Adapter;
 use Zend\Db\ResultSet\ResultSet;
 use Foosball\Model\Exception\FailedLoad;
 
-class PlayerTable extends TableGateway
+class PlayerTable extends AbstractTableGateway
 {
     protected $table = 'player';
 
