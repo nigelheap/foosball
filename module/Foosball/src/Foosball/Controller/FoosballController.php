@@ -9,7 +9,6 @@ use Foosball\Model\PlayerTable;
 
 class FoosballController extends AbstractActionController
 {
-    protected $gameTable;
 
     /**
      * Our player model
@@ -17,11 +16,25 @@ class FoosballController extends AbstractActionController
      */
     protected $playerTable;
 
+    /**
+     * Our game table model
+     * @var \Foosball\Model\GameTable
+     */
+    protected $gameTable;
+
     public function indexAction()
     {
         return new ViewModel(array(
-            'games' => 'this'
-            // 'games' => $this->getGamesTable()->fetchAll(),
-        ));
-    }  
+            'games' => $this->getGameTable()->fetchAll(),
+            ));
+    }
+
+    public function getGameTable()
+    {
+        if (!$this->gameTable) {
+            $sm = $this->getServiceLocator();
+            $this->gameTable = $sm->get('Foosball\Model\GameTable');
+        }
+        return $this->gameTable;
+    }
 }
