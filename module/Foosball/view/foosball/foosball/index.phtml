@@ -6,12 +6,22 @@ $this->headTitle($title);
 <p><a href="<?php /*echo $this->url('album', array( 
         'action'=>'add'));*/?>">Add new album</a></p>
 
-<?php echo count($players);?>
 <table class="table">
 <tr>
-    <th>Title</th>
-    <th>Artist</th>
-    <th>&nbsp;</th>
+    <thead>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Points</th>
+    </thead>
+    <tbody>
+    <?php foreach ($players as $player):?>
+        <tr>
+            <td><?= $this->escapeHtml($player->firstname . ' ' . $player->lastname);?></td>
+            <td><?= $this->escapeHtml($player->email);?></td>
+            <td><?= $this->escapeHtml($player->points);?></td>
+        </tr>
+    <?php endforeach; ?>
+    </tbody>
 </tr>
 
 </table>
