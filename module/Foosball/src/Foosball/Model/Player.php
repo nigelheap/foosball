@@ -10,8 +10,10 @@ use Zend\InputFilter\InputFilterInterface;
 class Player implements InputFilterAwareInterface
 {
     public $id;
-    public $artist;
-    public $title;
+    public $firstname;
+    public $lastname;
+    public $email;
+    public $points;
 
     protected $inputFilter;
 
@@ -20,9 +22,12 @@ class Player implements InputFilterAwareInterface
      */
     public function exchangeArray($data)
     {
-        $this->id     = (isset($data['id'])) ? $data['id'] : null;
-        $this->artist = (isset($data['artist'])) ? $data['artist'] : null;
-        $this->title  = (isset($data['title'])) ? $data['title'] : null;
+        foreach ($data as $key => $var) {
+            $key = str_replace('p_', '', $key);
+            if (property_exists($this, $key)) {
+                $this->{$key} = $var;
+            }
+        }
     }
 
     public function getArrayCopy()
@@ -88,7 +93,7 @@ class Player implements InputFilterAwareInterface
                 ),
             )));
 
-            $this->inputFilter = $inputFilter;        
+            $this->inputFilter = $inputFilter;
         }
 
         return $this->inputFilter;

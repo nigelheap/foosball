@@ -20,9 +20,12 @@ class Game implements InputFilterAwareInterface
      */
     public function exchangeArray($data)
     {
-        $this->id     = (isset($data['id'])) ? $data['id'] : null;
-        $this->artist = (isset($data['artist'])) ? $data['artist'] : null;
-        $this->title  = (isset($data['title'])) ? $data['title'] : null;
+        foreach ($data as $key => $var) {
+            $key = str_replace('g_', '', $key);
+            if (property_exists($this, $key)) {
+                $this->{$key} = $var;
+            }
+        }
     }
 
     public function getArrayCopy()
