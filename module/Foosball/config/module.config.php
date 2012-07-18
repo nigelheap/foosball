@@ -30,4 +30,4 @@ return array(
             'foosball' => __DIR__ . '/../view',
         ),
     ),
-);
+);

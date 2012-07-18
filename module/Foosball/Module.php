@@ -3,6 +3,7 @@
 namespace Foosball;
 
 use Foosball\Model\PlayerTable;
+use Foosball\Model\GameTable;
 
 class Module
 {
@@ -24,11 +25,16 @@ class Module
     {
         return array(
             'factories' => array(
-                'Album\Model\AlbumTable' =>  function($sm) {
+                'Foosball\Model\GameTable' =>  function($sm) {
+                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    $table = new GameTable($dbAdapter);
+                    return $table;
+                },
+                'Foosball\Model\PlayerTable' => function($sm) {
                     $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
                     $table = new PlayerTable($dbAdapter);
                     return $table;
-                },
+                }
             ),
         );
     }    

@@ -7,15 +7,15 @@ use Zend\Db\Adapter\Adapter;
 use Zend\Db\ResultSet\ResultSet;
 use Foosball\Model\Exception\FailedLoad;
 
-class PlayerTable extends AbstractTableGateway
+class GameTable extends AbstractTableGateway
 {
-    protected $table = 'fb_player';
+    protected $table = 'fb_game';
 
     public function __construct(Adapter $adapter)
     {
         $this->adapter = $adapter;
         $this->resultSetPrototype = new ResultSet();
-        $this->resultSetPrototype->setArrayObjectPrototype(new Player());
+        $this->resultSetPrototype->setArrayObjectPrototype(new Game());
 
         $this->initialize();
     }
@@ -26,10 +26,10 @@ class PlayerTable extends AbstractTableGateway
         return $resultSet;
     }
 
-    public function getPlayer($id)
+    public function getGame($id)
     {
         $id  = (int) $id;
-        $rowset = $this->select(array('p_id' => $id));
+        $rowset = $this->select(array('g_id' => $id));
         $row = $rowset->current();
         if (!$row) {
             throw new FailedLoad("Could not find row $id");
