@@ -2,10 +2,12 @@
 
 namespace Foosball;
 
+use Zend\ModuleManager\Feature\ServiceProviderInterface;
 use Foosball\Model\PlayerTable;
 use Foosball\Model\GameTable;
 
-class Module
+class Module implements
+    ServiceProviderInterface
 {
     public function getAutoloaderConfig()
     {
@@ -21,7 +23,7 @@ class Module
         );
     }
     
-    public function getServiceConfiguration()
+    public function getServiceConfig()
     {
         return array(
             'factories' => array(
