@@ -1,3 +1,0 @@
-[submodule "vendor/ZF2"]
-	path = vendor/ZF2
-	url = git@github.com:santouras/zf2.git
