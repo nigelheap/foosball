@@ -1,0 +1,7 @@
+{
+    "description": "Foosball Application",
+    "require": {
+        "php": ">=5.3.3",
+        "zendframework/zendframework": "dev-master#c34e65aca73902b311a374b2f4a0a1d4ee9bf792"
+    }
+}
