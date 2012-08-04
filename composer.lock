@@ -1,5 +1,5 @@
 {
-    "hash": "caf75ff052ee095a8a766f14f74e2bf8",
+    "hash": "47c514e438f8f02a7b74e840ee983297",
     "packages": [
         {
             "package": "doctrine/common",
@@ -14,8 +14,8 @@
         {
             "package": "zendframework/zendframework",
             "version": "dev-master",
-            "source-reference": "8c4328f2ac0001a3b5f1c10166b2a5c35b6f2e73",
-            "commit-date": "1343526705"
+            "source-reference": "984d799e60b26720589674b38c23489c87f7db81",
+            "commit-date": "1343985857"
         }
     ],
     "packages-dev": null,

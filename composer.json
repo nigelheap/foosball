@@ -2,7 +2,7 @@
     "description": "Foosball Application",
     "require": {
         "php": ">=5.3.3",
-        "zendframework/zendframework": "dev-master#8c4328f2ac0001a3b5f1c10166b2a5c35b6f2e73",
+        "zendframework/zendframework": "dev-master#984d799e60b26720589674b38c23489c87f7db81",
         "doctrine/common" : ">=2.1"
     }
 }
