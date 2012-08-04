@@ -22,12 +22,25 @@ class FoosballController extends AbstractActionController
      */
     protected $gameTable;
 
+    /**
+     * Player form
+     * @var \Foosball\Model\Player
+     */
+    protected $playerForm;
+
     public function indexAction()
     {
         return new ViewModel(array(
             'players' => $this->getPlayerTable()->fetchAll(),
             'games' => $this->getGameTable()->fetchAll(),
             ));
+    }
+
+    public function addAction()
+    {
+        return new ViewModel(array(
+            'form' => $this->getPlayerForm(),
+        ));
     }
 
     public function getGameTable()
@@ -46,5 +59,13 @@ class FoosballController extends AbstractActionController
             $this->playerTable = $sm->get('Foosball\Model\PlayerTable');
         }
         return $this->playerTable;
+    }
+
+    public function getPlayerForm()
+    {
+        if (!$this->playerForm) {
+            $sm = $this->getServiceLocator();
+            $this->playerForm = $sm->get('Foosball\Model\Player\Form');
+        }
     }
 }
