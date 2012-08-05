@@ -5,7 +5,8 @@ namespace Foosball\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Foosball\Model\GameTable;
-use Foosball\Model\PlayerTable;
+use Foosball\Model\Player;
+use Foosball\Form\PlayerForm;
 
 class FoosballController extends AbstractActionController
 {
@@ -38,9 +39,25 @@ class FoosballController extends AbstractActionController
 
     public function addAction()
     {
-        return new ViewModel(array(
-            'form' => $this->getPlayerForm(),
-        ));
+        $form = new PlayerForm();
+
+        $form->get('submit')->setAttribute('value', 'Add');
+
+        $request = $this->getRequest();
+        if ($request->isPost()) {
+            $player = new Player();
+            $form->setInputFilter($player->getInputFilter());
+            $form->setData($request->getPost());
+            if ($form->isValid()) {
+                $player->exchangeArray($form->getData());
+                $this->getPlayerTable()->savePlayer($player);
+
+                // Redirect to players
+                return $this->redirect()->toRoute('player');
+            }
+        }
+
+        return array('form' => $form);
     }
 
     public function getGameTable()
@@ -64,8 +81,7 @@ class FoosballController extends AbstractActionController
     public function getPlayerForm()
     {
         if (!$this->playerForm) {
-            $sm = $this->getServiceLocator();
-            $this->playerForm = $sm->get('Foosball\Model\Player\Form');
+            $this->playerForm = new PlayerForm();
         }
     }
 }

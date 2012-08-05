@@ -6,36 +6,17 @@ use Zend\InputFilter\InputFilter;
 use Zend\InputFilter\Factory as InputFactory;
 use Zend\InputFilter\InputFilterAwareInterface;
 use Zend\InputFilter\InputFilterInterface;
-use Zend\Form\Annotation;
 
-/**
- * @Annotation\Hydrator("Zend\Stdlib\Hydrator\ObjectProperty")
- * @Annotation\Name("player")
- */
 class Player /*implements InputFilterAwareInterface*/
 {
     public $id;
 
-    /**
-     * @Annotation\Attributes({"type":"text" })
-     * @Annotation\Validator({"name":"firstname","type":"Regex","options":{"regex":"/^[a-zA-Z][a-zA-Z0-9_-]{1,255}/"}})
-     * @Annotation\Options({"label":"Firstname:"})
-     */
     public $firstname;
 
-    /**
-     * @Annotation\Attributes({"type":"text" })
-     * @Annotation\Validator({"name":"lastname","type":"Regex","options":{"regex":"/^[a-zA-Z][a-zA-Z0-9_-]{1,255}/"}})
-     * @Annotation\Options({"label":"Lastname:"})
-     */
     public $lastname;
     public $email;
 
-    /**
-     * @Annotation\Attributes({"type":"text" })
-     * @Annotation\Validator({"name":"points","type":"Regex","options":{"regex":"/^[0-9]{1,4}/"}})
-     * @Annotation\Options({"label":"Username:"})
-     */
+
     public $points;
 
     protected $inputFilter;
@@ -57,7 +38,7 @@ class Player /*implements InputFilterAwareInterface*/
     {
         return get_object_vars($this);
     }
-/*
+
     public function setInputFilter(InputFilterInterface $inputFilter)
     {
         throw new \Exception("Not used");
@@ -79,7 +60,7 @@ class Player /*implements InputFilterAwareInterface*/
             )));
 
             $inputFilter->add($factory->createInput(array(
-                'name'     => 'artist',
+                'name'     => 'firstname',
                 'required' => true,
                 'filters'  => array(
                     array('name' => 'StripTags'),
@@ -98,7 +79,7 @@ class Player /*implements InputFilterAwareInterface*/
             )));
 
             $inputFilter->add($factory->createInput(array(
-                'name'     => 'title',
+                'name'     => 'lastname',
                 'required' => true,
                 'filters'  => array(
                     array('name' => 'StripTags'),
@@ -116,10 +97,24 @@ class Player /*implements InputFilterAwareInterface*/
                 ),
             )));
 
+            $inputFilter->add($factory->createInput(array(
+                'name'     => 'email',
+                'required' => 'true',
+                'filters'  => array(
+                    array('name' => 'StripTags'),
+                    array('name' => 'StringTrim'),
+                ),
+                'validators' => array(
+                    array(
+                        'name' => 'EmailAddress',
+                    ),
+                ),
+            )));
+
             $this->inputFilter = $inputFilter;
         }
 
         return $this->inputFilter;
-    }*/
+    }
 }
 
