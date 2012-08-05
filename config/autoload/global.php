@@ -16,7 +16,7 @@ return array(
         'driver' => 'Pdo',
         'dsn'            => 'mysql:dbname=foosball_primary;hostname=localhost',
         'username'       => 'foosball_primary',
-        'password'       => '123456', // change this password in local.php.dist
+        'password'       => '123456', // change this password in local.php
         'driver_options' => array(
             PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''
         ),
