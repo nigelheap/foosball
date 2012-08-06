@@ -58,6 +58,16 @@ class PlayerForm extends Form
         ));
 
         $this->add(array(
+            'name' => 'password_confirm',
+            'attributes' => array(
+                'type' => 'password',
+            ),
+            'options' => array(
+                'label' => 'Confirm Password',
+            ),
+        ));
+
+        $this->add(array(
             'name' => 'points',
             'attributes' => array(
                 'type' => 'text',

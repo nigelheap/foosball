@@ -37,28 +37,31 @@ class PlayerTable extends AbstractTableGateway
         return $row;
     }
 
-    /*public function saveAlbum(Album $album)
+        public function savePlayer(PLayer $player)
     {
         $data = array(
-            'artist' => $album->artist,
-            'title'  => $album->title,
+            'p_firstname' => $player->firstname,
+            'p_lastname'  => $player->lastname,
+            'p_email'  => $player->email,
+            'p_password'  => $player->password,
+            'p_points'  => $player->points,
         );
 
-        $id = (int)$album->id;
+        $id = (int)$player->id;
         if ($id == 0) {
             $this->insert($data);
         } else {
             if ($this->getAlbum($id)) {
-                $this->update($data, array('id' => $id));
+                $this->update($data, array('p_id' => $id));
             } else {
                 throw new \Exception('Form id does not exist');
             }
         }
     }
 
-    public function deleteAlbum($id)
+    public function deletePlayer($id)
     {
         $this->delete(array('id' => $id));
-    }*/
+    }
 
 }

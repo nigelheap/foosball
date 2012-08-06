@@ -19,6 +19,8 @@ class Player /*implements InputFilterAwareInterface*/
 
     public $points;
 
+    public $password;
+
     protected $inputFilter;
 
     /**
@@ -107,6 +109,45 @@ class Player /*implements InputFilterAwareInterface*/
                 'validators' => array(
                     array(
                         'name' => 'EmailAddress',
+                    ),
+                ),
+            )));
+
+            $inputFilter->add($factory->createInput(array(
+                'name'      => 'password',
+                'required'  => 'true',
+                'filters'   => array(
+                    array('name' => 'StripTags'),
+                    array('name' => 'StringTrim'),
+                ),
+            )));
+
+            $inputFilter->add($factory->createInput(array(
+                'name'     => 'password_confirm',
+                'required' => 'true',
+                'filters'  => array(
+                    array('name' => 'StripTags'),
+                    array('name' => 'StringTrim'),
+                ),
+                'validators' => array(
+                    array(
+                        'name' => 'Identical',
+                        'options' => 
+                        array('token' => 'password'),
+                    ),
+                ),
+            )));
+
+            $inputFilter->add($factory->createInput(array(
+                'name'      => 'points',
+                'required' => 'true',
+                'filters' => array(
+                    array('name' => 'StripTags'),
+                    array('name' => 'StringTrim'),
+                ),
+                'validators' => array(
+                    array(
+                        'name' => 'Int',
                     ),
                 ),
             )));
