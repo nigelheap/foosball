@@ -1,10 +1,6 @@
 {
-    "hash": "47c514e438f8f02a7b74e840ee983297",
+    "hash": "c8d69c5de76c02288ca276a607cdc9fd",
     "packages": [
-        {
-            "package": "doctrine/common",
-            "version": "2.2.2"
-        },
         {
             "package": "zendframework/zendframework",
             "version": "dev-master",
@@ -14,8 +10,8 @@
         {
             "package": "zendframework/zendframework",
             "version": "dev-master",
-            "source-reference": "984d799e60b26720589674b38c23489c87f7db81",
-            "commit-date": "1343985857"
+            "source-reference": "2a926c8b02587e5ebdfd674e036fca5c82b97b05",
+            "commit-date": "1344288736"
         }
     ],
     "packages-dev": null,
