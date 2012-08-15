@@ -60,6 +60,23 @@ class FoosballController extends AbstractActionController
         return array('form' => $form);
     }
 
+    public function editAction()
+    {
+        //make sure we get through an id
+        $id = (int)$this->params('id');
+        if (!$id) {
+            return $this->redirect->toRoute('player', array('action' => 'add'));
+        }
+
+        $player = $this->getPlayerTable()->getPlayer($id);
+
+        $form = new PlayerForm();
+        $form->bind($player);
+        $form->get('submit')->setAttribute('value', 'Edit');
+
+        return array('id' => $id, 'form' => $form);
+    }
+
     public function getGameTable()
     {
         if (!$this->gameTable) {

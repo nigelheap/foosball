@@ -36,19 +36,6 @@ class Player implements InputFilterAwareInterface
         }
     }
 
-    /**
-     * Set service manager instance
-     *
-     * @param  ServiceManager $serviceManager
-     * @return void
-     */
-    public function setServiceManager(ServiceManager $serviceManager)
-    {
-        $this->sm = $serviceManager;
-
-        var_dump(class_parents($this->sm));
-    }
-
     public function getArrayCopy()
     {
         return get_object_vars($this);
@@ -130,7 +117,7 @@ class Player implements InputFilterAwareInterface
                             'id'    => $this->id,
                             'table' => 'fb_player',
                         ),
-                    )
+                    ),
                 ),
             )));
 
@@ -141,15 +128,7 @@ class Player implements InputFilterAwareInterface
                     array('name' => 'StripTags'),
                     array('name' => 'StringTrim'),
                 ),
-                'validators' => array(
-                    array(
-                        'name' => 'StringLength',
-                        'options' => array(
-                            'min' => 8,
-                        ),
-                    ),
-                    array('name' => 'Foosball\Validator\PasswordStrength'),
-                ),
+                array('name' => 'Foosball\Validator\PasswordStrength'),
             )));
 
             $inputFilter->add($factory->createInput(array(
