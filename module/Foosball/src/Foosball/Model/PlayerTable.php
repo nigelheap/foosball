@@ -51,7 +51,7 @@ class PlayerTable extends AbstractTableGateway
         if ($id == 0) {
             $this->insert($data);
         } else {
-            if ($this->getAlbum($id)) {
+            if ($this->getPlayer($id)) {
                 $this->update($data, array('p_id' => $id));
             } else {
                 throw new \Exception('Form id does not exist');

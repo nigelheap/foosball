@@ -6,8 +6,7 @@ use Zend\ModuleManager\Feature\ServiceProviderInterface;
 use Foosball\Model\PlayerTable;
 use Foosball\Model\GameTable;
 use Foosball\Model\Player;
-use Foosball\Validator\PasswordStrength;
-use Zend\Form\Annotation\AnnotationBuilder;
+use Foosball\Validator\Unique;
 
 class Module implements
     ServiceProviderInterface
@@ -39,10 +38,10 @@ class Module implements
                     $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
                     $table = new PlayerTable($dbAdapter);
                     return $table;
-                }/*,
-                'Foosball\Validator\PasswordStrength' => function($sm) {
-                    return new PasswordStrength();
-                }*/
+                },
+                'foosball_validator_unique' => function($sm) {
+                    return new Unique();
+                },
             ),
         );
     }    
